@@ -1,31 +1,22 @@
 class PassengersController < ApplicationController  
-  # def destroy
-  #   # binding.pry
+
+  # def remove_passenger_from_flight
   #   passenger = Passenger.find(params[:id])
-  #   # PassengerFlight.destroy(:passengers)
-  #   passenger.destroy
-  #   # flash[:success] = "Passenger Deleted"
+  #   # # PassengerFlight.where(flight_id: )
+  #   # # # PassengerFlight.where(passenger_id: passenger.id).destroy_all
+  #   # # # binding.pry
+  #   # # passenger.delete
+    
+  #   PassengerFlight.delete.Passenger.find(params[:id]).where(passenger_id: passenger.id)
+  #   # Passenger.delete(params[:id]).where(passenger_id: passenger.id)
   #   redirect_to "/flights"
   # end
 
-  #   def remove_passenger_from_flight
-  #    passenger = Passenger.find(params[:id])
-  #    flight = passenger.flights.find(params[:id])
-
-  #    if flight
-  #       passenger.flights.delete(flight)
-  #    end
-
-  # end
-def remove_passenger_from_flight
+  def remove_passenger_from_flight
     passenger = Passenger.find(params[:id])
-    passenger_flight = PassengerFlight.where(passenger_id: passenger.id).destroy_all
-    passenger.destroy
-    redirect_to "/flights"
-end
+    x = PassengerFlight.find(binding.pry)
+    binding.pry
+  end
 
-# def remove_passenger_from_flight
-#     self.destroy_all
-#     redirect_to "/flights"
-# end
+
 end
