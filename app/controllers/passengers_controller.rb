@@ -19,8 +19,13 @@ class PassengersController < ApplicationController
   # end
 def remove_passenger_from_flight
     passenger = Passenger.find(params[:id])
-    passenger.flights.where(id: passenger.id).destroy_all
+    passenger_flight = PassengerFlight.where(passenger_id: passenger.id).destroy_all
     passenger.destroy
     redirect_to "/flights"
 end
+
+# def remove_passenger_from_flight
+#     self.destroy_all
+#     redirect_to "/flights"
+# end
 end

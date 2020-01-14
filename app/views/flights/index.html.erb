@@ -5,7 +5,9 @@
 <p> FLIGHT: <%= flight.number %> </p>
 <p> Passengers </p>
 <% flight.passengers.each do |passenger| %>
+<section class = "grid-item" id= 'passenger-<%=passenger.id%>'>
 <p> - <%= passenger.name %> <%= link_to "Remove Passenger", "/passengers/#{passenger.id}", method: :delete %></p> 
+</section>
 <% end %>
 </section>
 <% end %>

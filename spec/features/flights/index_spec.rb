@@ -40,25 +40,34 @@ RSpec.describe "As a vistior" do
       passenger_1 = Passenger.create(name: "Lucy", age:26)
       passenger_2 = Passenger.create(name: "Jimmy", age:36)
       passenger_3 = Passenger.create(name: "Tony", age:16)
+      passenger_4 = Passenger.create(name: "Hannah", age:20)
 
       PassengerFlight.create(passenger: passenger_1, flight: southwest_1)
       PassengerFlight.create(passenger: passenger_2, flight: southwest_1)
       PassengerFlight.create(passenger: passenger_3, flight: southwest_2)
+      PassengerFlight.create(passenger: passenger_3, flight: southwest_1)
+      PassengerFlight.create(passenger: passenger_4, flight: southwest_2)
       
       visit "/flights"
 
       within "#flight-#{southwest_2.id}" do
         expect(page).to have_content(southwest_2.number)
-        expect(page).to have_content(passenger_3.name)
-        expect(page).to have_link("Remove Passenger")
+          within "#passenger-#{passenger_3.id}" do
+            expect(page).to have_content(passenger_3.name)
+            expect(page).to have_link("Remove Passenger")
 
-        click_on "Remove Passenger"
+            click_on "Remove Passenger"
+          end
       end
 
       expect(current_path).to eq("/flights")
       expect(page).to_not have_content(passenger_3.name)
-
-
+      expect(page).to have_content(passenger_4.name)
+      expect(page).to have_content(passenger_1.name)
+      
+      within "#flight-#{southwest_1.id}" do
+         expect(page).to have_content(passenger_3.name)
+      end
     end 
   end
 end 
