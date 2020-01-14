@@ -7,5 +7,9 @@
     <p>Time: <%= flight.time %></p>
     <p>Departure City: <%= flight.departure_city %></p>
     <p>Arrival City: <%= flight.arrival_city %></p>
+  <% flight.passengers.each do |passenger| %>
+  <h4> Passenger list: </h4>
+  <p>- <%= passenger.name %></p>
+<% end %>
   </section>
 <% end %>
